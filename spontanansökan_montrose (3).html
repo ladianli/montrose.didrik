@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spontanansökan - Montrose</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0F0A0B;
+    --bg-card: #1A1214;
+    --bg-subtle: #221A1C;
+    --text-primary: #F2ECED;
+    --text-secondary: #A8959A;
+    --text-muted: #7A6B70;
+    --accent: #C2485B;
+    --accent-light: #D4637A;
+    --accent-dim: rgba(194, 72, 91, 0.12);
+    --border: rgba(255,255,255,0.06);
+    --border-accent: rgba(194, 72, 91, 0.2);
+    --radius: 16px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    font-size: 15.5px;
+    line-height: 1.7;
+    font-weight: 300;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 60px 28px 80px;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 56px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .logo-area img {
+    height: 22px;
+    opacity: 0.9;
+  }
+
+  .badge {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    background: var(--accent-dim);
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+
+  .date {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  .title-block {
+    margin-bottom: 48px;
+  }
+
+  .title-block h1 {
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  .author-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .author-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+
+  .author-link {
+    font-size: 13px;
+    color: var(--accent-light);
+    text-decoration: none;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+  }
+  .author-link:hover { opacity: 1; }
+
+  .divider-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--text-muted);
+  }
+
+  .letter-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .letter-body p {
+    color: var(--text-secondary);
+    font-weight: 300;
+  }
+
+  .greeting {
+    color: var(--text-primary) !important;
+    font-weight: 400 !important;
+    font-size: 16px;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin: 8px 0;
+  }
+
+  .skill-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 16px;
+    transition: border-color 0.25s, background 0.25s;
+  }
+
+  .skill-card:hover {
+    border-color: var(--border-accent);
+    background: var(--bg-subtle);
+  }
+
+  .skill-card .icon-bar {
+    width: 24px;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .skill-card h3 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+
+  .skill-card p {
+    font-size: 12.5px;
+    color: var(--text-muted) !important;
+    line-height: 1.5;
+  }
+
+  .contrib-section {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    margin: 8px 0;
+  }
+
+  .contrib-section h2 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 18px;
+    letter-spacing: -0.01em;
+  }
+
+  .contrib-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .contrib-item:last-child { margin-bottom: 0; }
+
+  .contrib-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-top: 8px;
+    flex-shrink: 0;
+  }
+
+  .contrib-item strong {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .contrib-item p {
+    font-size: 14px !important;
+    color: var(--text-secondary) !important;
+    line-height: 1.6;
+  }
+
+  .signoff {
+    margin-top: 12px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+
+  .signoff p {
+    color: var(--text-primary) !important;
+    font-weight: 400 !important;
+  }
+
+  .signoff .name {
+    font-size: 17px;
+    font-weight: 500;
+    margin-top: 4px;
+  }
+
+  .footer {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .footer a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer a:hover { color: var(--accent-light); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .header { animation: fadeUp 0.5s ease-out both; }
+  .title-block { animation: fadeUp 0.5s ease-out 0.08s both; }
+  .letter-body > *:nth-child(1) { animation: fadeUp 0.4s ease-out 0.15s both; }
+  .letter-body > *:nth-child(2) { animation: fadeUp 0.4s ease-out 0.2s both; }
+  .letter-body > *:nth-child(3) { animation: fadeUp 0.4s ease-out 0.25s both; }
+  .skills-grid { animation: fadeUp 0.5s ease-out 0.3s both; }
+  .letter-body > *:nth-child(5) { animation: fadeUp 0.4s ease-out 0.35s both; }
+  .contrib-section { animation: fadeUp 0.5s ease-out 0.4s both; }
+  .letter-body > *:nth-child(7) { animation: fadeUp 0.4s ease-out 0.45s both; }
+  .letter-body > *:nth-child(8) { animation: fadeUp 0.4s ease-out 0.5s both; }
+  .signoff { animation: fadeUp 0.4s ease-out 0.55s both; }
+
+  @media (max-width: 540px) {
+    .wrapper { padding: 40px 20px 60px; }
+    .title-block h1 { font-size: 26px; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .header { flex-direction: column; align-items: flex-start; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <div class="header">
+    <div class="logo-area">
+      <img src="https://cdn.prod.website-files.com/665d843245a09dc69c336e03/665d8623577dc9756f8116a1_Vector.svg" alt="Montrose">
+      <span class="badge">Spontanansökan</span>
+    </div>
+    <span class="date">1 mars 2026</span>
+  </div>
+
+  <div class="title-block">
+    <h1>Didrik Liljeström</h1>
+    <div class="author-row">
+      <span class="author-name">Finans · Psykologi · Digital tillväxt</span>
+      <span class="divider-dot"></span>
+      <a class="author-link" href="https://www.linkedin.com/in/didrik-l-261607135/" target="_blank">LinkedIn ↗</a>
+    </div>
+  </div>
+
+  <div class="letter-body">
+
+    <p class="greeting">Hej,</p>
+
+    <p>Jag skriver till er för att jag tror att min bakgrund träffar något som Montrose behöver när ni växer: skärningspunkten mellan finans, data, psykologi och digital tillväxt. Jag jobbar med marknadsföring där jag driver kampanjer på främst Meta och Google, och annat i kundresan, och jag avslutar just nu min masterexamen i Accounting &amp; Finance vid Lunds universitet. En ekonomiutbildning jag började till stor anledning är mitt starka intresse för att jobba på Nordnet eller Avanza - Montrose fanns inte när jag började kandidaten för några år sedan.</p>
+
+    <p>Jag har varit mycket intresserad av personlig utveckling, och att hjälpa andra människor, vilket är en anledning till att jag utbildade mig till psykolog tidigare. Men jag vill hjälpa människor på andra sätt. Montrose är den typen av plats där jag tror att jag kan göra det - genom att bidra till en plattform som faktiskt ger investerare bättre verktyg och förutsättningar.</p>
+
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="icon-bar"></div>
+        <h3>Finans</h3>
+        <p>Ekonomisk analys, företagsvärdering och redovisning. MSc Accounting &amp; Finance, Lunds universitet.</p>
+      </div>
+      <div class="skill-card">
+        <div class="icon-bar"></div>
+        <h3>Psykologi</h3>
+        <p>Beteendebiaser, beslutsfattande och strategi. Psykologexamen, Karolinska Institutet.</p>
+      </div>
+      <div class="skill-card">
+        <div class="icon-bar"></div>
+        <h3>Digital tillväxt</h3>
+        <p>Meta-kampanjer, server-side tracking, konverteringsanalys och AI-verktyg.</p>
+      </div>
+    </div>
+
+    <p>Jag följer aktiemarknader aktivt, diskuterar investeringar med vänner och bekanta, och diskuterar allt från råvaruexponering till bioteknikvärderingar och bolagsstyrning.</p>
+
+    <div class="contrib-section">
+      <h2>Var jag kan bidra</h2>
+      <div class="contrib-item">
+        <span class="contrib-dot"></span>
+        <p><strong>Tillväxt &amp; marknadsföring</strong> - Bygga och optimera betald kundanskaffning, sätta upp attribution och konverteringsflöden som faktiskt mäter vad som fungerar, och producera innehåll som talar till en investerarkunnig målgrupp.</p>
+      </div>
+      <div class="contrib-item">
+        <span class="contrib-dot"></span>
+        <p><strong>Produktutveckling</strong> - Min psykologibakgrund kan bidra till att förstå hur kunder interagerar med data, nyckeltal och analys i appen.</p>
+      </div>
+      <div class="contrib-item">
+        <span class="contrib-dot"></span>
+        <p><strong>Kundrelationer</strong> - Finansiell kompetens och kommunikationsförmåga att möta investeringsintresserade kunder på rätt nivå. Erfarenhet av att möta människor i olika situationer, bland annat från mitt arbete inom vården.</p>
+      </div>
+      <div class="contrib-item">
+        <span class="contrib-dot"></span>
+        <p><strong>Kredithantering &amp; rådgivning</strong> - Med min redovisnings- och finansbakgrund kan jag bidra inom kreditbedömning, värdepapperskredit och rådgivning kring belåning - områden som växer i takt med att Montrose breddar sitt erbjudande.</p>
+      </div>
+    </div>
+
+    <p>Jag söker inte en specifik titel utan den roll där mina färdigheter gör mest nytta i ert nuvarande skede. Jag är mer intresserad av att jobba i rätt organisation med grymma människor, än vad jag exakt gör så länge det är i gränslandet till ekonomi.</p>
+
+    <p>Jag hörs mer än gärna för ett samtal om hur jag kan bidra.</p>
+
+    <div class="signoff">
+      <p>Allt gott,</p>
+      <p class="name">Didrik Liljeström</p>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <a href="/cdn-cgi/l/email-protection#2a43444c456a4745445e5845594f04434515595f48404f495e17795a45445e4b444b44590f69190f681c414b44"><span class="__cf_email__" data-c
